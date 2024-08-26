@@ -20,9 +20,9 @@ namespace XhsSDK.Bridge
 	internal class AndroidBridgeImpl : IBridge
 	{
 		private const string UnityPlayerClassName = "com.unity3d.player.UnityPlayer";
-		private const string ManagerClassName = "com.xhsapi.bridge.XhsApiUnityBridge";
-		private const string RegisterClassName = "com.xhsapi.bridge.IRegisterListener";
-		private const string ShareClassName = "com.xhsapi.bridge.IShareListener";
+		private const string ManagerClassName = "com.bridge.xhsapi.XhsApiUnityBridge";
+		private const string RegisterClassName = "com.bridge.xhsapi.IRegisterListener";
+		private const string ShareClassName = "com.bridge.xhsapi.IShareListener";
 
 		private static AndroidJavaClass bridge;
 		private static AndroidJavaObject currentActivity;

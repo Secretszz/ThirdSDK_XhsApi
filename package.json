@@ -1,5 +1,5 @@
 {
-  "name": "com.xhsapi.bridge",
+  "name": "com.bridge.xhsapi",
   "displayName": "XiaoHongShu SDK",
   "version": "1.0.0",
   "description": "XiaoHongShu Open Platform Mobile Application SDK Adaptation Package.",
@@ -10,12 +10,5 @@
   },
   "dependencies":{
     "com.unity.nuget.newtonsoft-json": "3.2.1"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/Secretszz/XhsApi.git"
-  },
-  "publishConfig": {
-    "registry": "https://package.openupm.com"
   }
 }
