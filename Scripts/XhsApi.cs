@@ -43,10 +43,10 @@ namespace XhsSDK.Api
 		}
 		
 #if UNITY_IOS
-		public const string appKey = "0a42db3502d007df72885eee11f9c596";
-		private const string universalLink = "https://sunnygame666.com/zhandoushaonv/";
+		public const string appKey = "";
+		private const string universalLink = "https://domain/project/";
 #else
-		private const string appKey = "22b773b290903791777f3b42a0cfbf5a";
+		private const string appKey = "";
 		private const string universalLink = "";
 #endif
 
