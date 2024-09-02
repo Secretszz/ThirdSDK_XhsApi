@@ -23,8 +23,9 @@ static XhsApiManager* _instance;
     return _instance;
 }
 
-- (void)setAppId:(NSString *)appKey
-   universalLink:(NSString *)universalLink{
+- (void)registerApp{
+    NSString * appKey = @"**APPID**";
+    NSString * universalLink = @"**UNILINK**";
     [XHSApi registerApp:appKey universalLink:universalLink delegate:self];
 }
 
@@ -135,11 +136,8 @@ extern "C"
 {
 #endif
     
-    void xhs_initSDK(const char* appkey, const char* universalLink){
-        NSString* nsAppkey = [NSString stringWithUTF8String:appkey];
-        NSString* nsUniversalLink = [NSString stringWithUTF8String:universalLink];
-        [XhsApiManager.instance setAppId:nsAppkey
-                           universalLink:nsUniversalLink];
+    void xhs_initSDK(){
+        [XhsApiManager.instance registerApp];
     }
     
     void xhs_shareImageByData(const char* title,

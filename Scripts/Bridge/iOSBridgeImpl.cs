@@ -8,12 +8,10 @@
 // Create Time:		2024/02/03 17:34:49
 // *******************************************
 
-using Newtonsoft.Json;
-
 #if UNITY_IOS
-namespace XhsSDK.Bridge
+namespace Bridge.XhsSDK
 {
-	using Listener;
+	using Newtonsoft.Json;
 	using System.Runtime.InteropServices;
 	using AOT;
 	using System;
@@ -27,12 +25,10 @@ namespace XhsSDK.Bridge
 		/// <summary>
 		/// 初始化
 		/// </summary>
-		/// <param name="appkey"></param>
-		/// <param name="universalLink"></param>
 		/// <param name="listener"></param>
-		void IBridge.InitSDK(string appkey, string universalLink, IInitListener listener)
+		void IBridge.InitSDK(IInitListener listener)
 		{
-			xhs_initSDK(appkey, universalLink);
+			xhs_initSDK();
 			listener?.OnSuccess();
 		}
 
@@ -168,7 +164,7 @@ namespace XhsSDK.Bridge
 		/// 初始化
 		/// </summary>
 		[DllImport("__Internal")]
-		private static extern void xhs_initSDK(string appkey, string universalLink);
+		private static extern void xhs_initSDK();
 
 		/// <summary>
 		/// 分享图片

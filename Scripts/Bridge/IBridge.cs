@@ -8,19 +8,15 @@
 // Create Time:		2024/02/03 16:04:32
 // *******************************************
 
-namespace XhsSDK.Bridge
+namespace Bridge.XhsSDK
 {
-	using Listener;
-
 	internal interface IBridge
 	{
 		/// <summary>
 		/// 初始化
 		/// </summary>
-		/// <param name="appkey"></param>
-		/// <param name="universalLink"></param>
 		/// <param name="listener"></param>
-		void InitSDK(string appkey, string universalLink, IInitListener listener);
+		void InitSDK(IInitListener listener);
 
 		/// <summary>
 		/// 发起图文分享

@@ -9,25 +9,28 @@
 // *******************************************
 
 #if UNITY_IOS
-namespace XhsSDK.Editor
+namespace Bridge.XhsSDK
 {
-	using Api;
 	using System.IO;
 	using UnityEditor;
 	using UnityEditor.Callbacks;
 	using UnityEditor.iOS.Xcode;
-	using System.Linq;
+	using Editor;
+	using System.Text;
 
 	/// <summary>
 	/// 
 	/// </summary>
 	internal static class IOSProcessor
 	{
+		private const string ApiPath = "Libraries/ThirdSDK/XhsApi/Plugins/iOS/XhsApiManager.mm";
+		
 		[PostProcessBuild(10002)]
 		public static void OnPostProcessBuild(BuildTarget target, string pathToBuildProject)
 		{
 			if (target == BuildTarget.iOS)
 			{
+				ThirdSDKSettings instance = ThirdSDKSettings.LoadInstance();
 				var plistPath = Path.Combine(pathToBuildProject, "Info.plist");
 				var plist = new PlistDocument();
 				plist.ReadFromFile(plistPath);
@@ -38,28 +41,20 @@ namespace XhsSDK.Editor
 						"xhsdiscover",
 				};
 			
-				PlistElementArray plistElementList = rootDic.GetElementArray("LSApplicationQueriesSchemes");
-				string[] list = plistElementList.values.Select(x => x.AsString()).ToArray();
-				foreach (var t in items)
-				{
-					if (!list.Contains(t))
-					{
-						plistElementList.AddString(t);
-					}
-				}
+				rootDic.AddApplicationQueriesSchemes(items);
 			
 				var array = rootDic.GetElementArray("CFBundleURLTypes");
-				PlistElementDict wxURLType = array.AddDict();
-				wxURLType.SetString("CFBundleTypeRole", "Editor");
-				wxURLType.SetString("CFBundleURLName", "xiaohongshu");
-				wxURLType.CreateArray("CFBundleURLSchemes").AddString($"xhs{XhsApi.appKey}");
+				array.AddCFBundleURLTypes("Editor", "xiaohongshu", new[] { $"xhs{instance.XhsAppId}" });
 				plist.WriteToFile(plistPath);
+				
+				var objectiveCFilePath = Path.Combine(pathToBuildProject, ApiPath);
+				StringBuilder objectiveCCode = new StringBuilder(File.ReadAllText(objectiveCFilePath));
+				objectiveCCode.Replace("**APPID**", instance.WxAppId);
+				objectiveCCode.Replace("**UNILINK**", instance.UniversalLink);
+				// 将修改后的 Objective-C 代码写回文件中
+				File.WriteAllText(objectiveCFilePath, objectiveCCode.ToString());
+				UnityEngine.Debug.Log("MooncakeConstant file modified at: " + objectiveCFilePath);
 			}
-		}
-
-		private static PlistElementArray GetElementArray(this PlistElementDict rootDict, string key)
-		{
-			return rootDict.values.TryGetValue(key, out var element) ? element.AsArray() : rootDict.CreateArray(key);
 		}
 	}
 }

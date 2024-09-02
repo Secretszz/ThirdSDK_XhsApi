@@ -1,8 +1,9 @@
 {
-    "name": "XhsSDK.Editor",
+    "name": "Bridge.XhsApi.Editor",
     "rootNamespace": "",
     "references": [
-        "GUID:c133a95ee8b93704f9aa51c75d1ce024"
+        "GUID:c133a95ee8b93704f9aa51c75d1ce024",
+        "GUID:92c3d3f22ede62643b00b5951466b066"
     ],
     "includePlatforms": [
         "Editor"

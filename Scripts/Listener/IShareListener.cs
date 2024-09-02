@@ -9,7 +9,7 @@
 // Create Time:		2024/02/03 16:56:02
 // *******************************************
 
-namespace XhsSDK.Listener
+namespace Bridge.XhsSDK
 {
 	/// <summary>
 	/// 

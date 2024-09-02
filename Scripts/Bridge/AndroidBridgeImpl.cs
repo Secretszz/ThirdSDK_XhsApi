@@ -9,9 +9,8 @@
 // *******************************************
 
 #if UNITY_ANDROID
-namespace XhsSDK.Bridge
+namespace Bridge.XhsSDK
 {
-	using Listener;
 	using UnityEngine;
 
 	/// <summary>
@@ -27,12 +26,12 @@ namespace XhsSDK.Bridge
 		private static AndroidJavaClass bridge;
 		private static AndroidJavaObject currentActivity;
 
-		void IBridge.InitSDK(string appKey, string universalLink, IInitListener listener)
+		void IBridge.InitSDK(IInitListener listener)
 		{
 			AndroidJavaClass unityPlayer = new AndroidJavaClass(UnityPlayerClassName);
 			currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 			bridge = new AndroidJavaClass(ManagerClassName);
-			bridge.CallStatic("registerApp", currentActivity, appKey, new RegisterCallback(listener));
+			bridge.CallStatic("registerApp", currentActivity, new RegisterCallback(listener));
 		}
 
 		/// <summary>

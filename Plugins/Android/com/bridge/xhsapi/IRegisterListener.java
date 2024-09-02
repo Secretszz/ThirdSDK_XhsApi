@@ -1,4 +1,4 @@
-package com.xhsapi.bridge;
+package com.bridge.xhsapi;
 
 /**
  * 注册App监听

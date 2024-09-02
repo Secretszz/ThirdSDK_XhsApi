@@ -9,9 +9,8 @@
 // *******************************************
 
 #if UNITY_EDITOR
-namespace XhsSDK.Bridge
+namespace Bridge.XhsSDK
 {
-	using Listener;
 	using UnityEngine;
 
 	/// <summary>
@@ -19,7 +18,7 @@ namespace XhsSDK.Bridge
 	/// </summary>
 	internal class EditorBridge : IBridge
 	{
-		void IBridge.InitSDK(string appkey, string universalLink, IInitListener listener)
+		void IBridge.InitSDK(IInitListener listener)
 		{
 			listener?.OnSuccess();
 		}
