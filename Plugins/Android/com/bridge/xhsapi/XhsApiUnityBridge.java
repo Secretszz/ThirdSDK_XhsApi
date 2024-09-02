@@ -1,4 +1,4 @@
-package com.xhsapi.bridge;
+package com.bridge.xhsapi;
 
 import android.app.Activity;
 import android.util.Log;
@@ -30,13 +30,12 @@ public class XhsApiUnityBridge {
     /**
      * 注册 app （即初始化）
      * @param activity 主Activity
-     * @param appKey 申请的 appKey
      * @param listener 初始化回调
      */
-    public static void registerApp(Activity activity, String appKey, IRegisterListener listener){
+    public static void registerApp(Activity activity, IRegisterListener listener){
         XhsShareGlobalConfig config = new XhsShareGlobalConfig()
                 .setEnableLog(true);
-        XhsShareSdk.registerApp(activity, appKey, config, new RegisterCallback(listener));
+        XhsShareSdk.registerApp(activity, "**APPID**", config, new RegisterCallback(listener));
     }
 
     /**

@@ -1,4 +1,4 @@
-package com.xhsapi.bridge;
+package com.bridge.xhsapi;
 
 /**
  * 分享监听

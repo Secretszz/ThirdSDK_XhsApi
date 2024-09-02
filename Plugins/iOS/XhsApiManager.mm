@@ -24,8 +24,8 @@ static XhsApiManager* _instance;
 }
 
 - (void)registerApp{
-    NSString * appKey = **APPID**;
-    NSString * universalLink = **UNILINK**;
+    NSString * appKey = @"**APPID**";
+    NSString * universalLink = @"**UNILINK**";
     [XHSApi registerApp:appKey universalLink:universalLink delegate:self];
 }
 
