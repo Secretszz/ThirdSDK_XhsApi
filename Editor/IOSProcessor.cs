@@ -9,9 +9,8 @@
 // *******************************************
 
 #if UNITY_IOS
-namespace XhsSDK.Editor
+namespace Bridge.XhsSDK
 {
-	using Api;
 	using System.IO;
 	using UnityEditor;
 	using UnityEditor.Callbacks;

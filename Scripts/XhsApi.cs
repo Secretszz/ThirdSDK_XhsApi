@@ -8,11 +8,8 @@
 // Create Time:		2024/02/03 19:23:54
 // *******************************************
 
-namespace XhsSDK.Api
+namespace Bridge.XhsSDK
 {
-	using Bridge;
-	using Listener;
-	
 	/// <summary>
 	/// 
 	/// </summary>

@@ -1,5 +1,5 @@
 {
-    "name": "XhsSDK.Editor",
+    "name": "Bridge.XhsApi.Editor",
     "rootNamespace": "",
     "references": [
         "GUID:c133a95ee8b93704f9aa51c75d1ce024"

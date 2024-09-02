@@ -9,7 +9,7 @@
 // Create Time:		2024/02/03 16:04:32
 // *******************************************
 
-namespace XhsSDK.Listener
+namespace Bridge.XhsSDK
 {
 	/// <summary>
 	/// 初始化监听

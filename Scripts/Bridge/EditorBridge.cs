@@ -9,9 +9,8 @@
 // *******************************************
 
 #if UNITY_EDITOR
-namespace XhsSDK.Bridge
+namespace Bridge.XhsSDK
 {
-	using Listener;
 	using UnityEngine;
 
 	/// <summary>

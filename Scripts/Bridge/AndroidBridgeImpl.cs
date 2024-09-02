@@ -9,7 +9,7 @@
 // *******************************************
 
 #if UNITY_ANDROID
-namespace XhsSDK.Bridge
+namespace Bridge.XhsSDK
 {
 	using Listener;
 	using UnityEngine;

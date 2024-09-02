@@ -8,10 +8,8 @@
 // Create Time:		2024/02/03 16:04:32
 // *******************************************
 
-namespace XhsSDK.Bridge
+namespace Bridge.XhsSDK
 {
-	using Listener;
-
 	internal interface IBridge
 	{
 		/// <summary>

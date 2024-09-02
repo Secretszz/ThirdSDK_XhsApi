@@ -8,12 +8,10 @@
 // Create Time:		2024/02/03 17:34:49
 // *******************************************
 
-using Newtonsoft.Json;
-
 #if UNITY_IOS
-namespace XhsSDK.Bridge
+namespace Bridge.XhsSDK
 {
-	using Listener;
+	using Newtonsoft.Json;
 	using System.Runtime.InteropServices;
 	using AOT;
 	using System;
