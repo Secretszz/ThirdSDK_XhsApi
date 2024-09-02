@@ -18,7 +18,7 @@ namespace Bridge.XhsSDK
 	/// </summary>
 	internal class EditorBridge : IBridge
 	{
-		void IBridge.InitSDK(string appkey, string universalLink, IInitListener listener)
+		void IBridge.InitSDK(IInitListener listener)
 		{
 			listener?.OnSuccess();
 		}

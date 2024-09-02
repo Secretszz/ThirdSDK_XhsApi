@@ -38,14 +38,6 @@ namespace Bridge.XhsSDK
 				return _bridge;
 			}
 		}
-		
-#if UNITY_IOS
-		public const string appKey = "";
-		private const string universalLink = "https://domain/project/";
-#else
-		private const string appKey = "";
-		private const string universalLink = "";
-#endif
 
 		/// <summary>
 		/// 初始化
@@ -53,7 +45,7 @@ namespace Bridge.XhsSDK
 		/// <param name="listener"></param>
 		public static void InitSDK(IInitListener listener)
 		{
-			bridgeImpl.InitSDK(appKey, universalLink, listener);
+			bridgeImpl.InitSDK(listener);
 		}
 
 		/// <summary>

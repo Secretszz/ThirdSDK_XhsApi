@@ -15,10 +15,8 @@ namespace Bridge.XhsSDK
 		/// <summary>
 		/// 初始化
 		/// </summary>
-		/// <param name="appkey"></param>
-		/// <param name="universalLink"></param>
 		/// <param name="listener"></param>
-		void InitSDK(string appkey, string universalLink, IInitListener listener);
+		void InitSDK(IInitListener listener);
 
 		/// <summary>
 		/// 发起图文分享
