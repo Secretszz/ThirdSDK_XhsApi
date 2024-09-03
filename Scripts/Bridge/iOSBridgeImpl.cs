@@ -154,7 +154,7 @@ namespace Bridge.XhsSDK
 			}
 		}
 
-		[MonoPInvokeCallback(typeof(U3DBridgeCallback_Share))]
+		[MonoPInvokeCallback(typeof(U3DBridgeCallback_OpenUrl))]
 		private static void OpenUrlCallback(bool success, string errMsg)
 		{
 
