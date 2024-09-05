@@ -23,7 +23,7 @@ namespace Bridge.XhsSDK
         [PostProcessBuild]
         public static void OnPostprocessBuild(BuildTarget target, string projectPath)
         {
-            ThirdSDKSettings settings = ThirdSDKSettings.LoadInstance();
+            ThirdSDKSettings settings = ThirdSDKSettings.Instance;
             // Objective-C 文件路径
             var objectiveCFilePath = $"{projectPath}/unityLibrary/src/main/java/com/bridge/xhsapi/XhsApiUnityBridge.java";
             // 读取 Objective-C 文件内容
