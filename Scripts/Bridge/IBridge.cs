@@ -10,6 +10,8 @@
 
 namespace Bridge.XhsSDK
 {
+	using Common;
+	
 	internal interface IBridge
 	{
 		/// <summary>

@@ -6,6 +6,8 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.bridge.common.listener.IInitListener;
+import com.bridge.common.listener.IShareListener;
 import com.xingin.xhssharesdk.XhsShareSdkTools;
 import com.xingin.xhssharesdk.callback.XhsShareCallback;
 import com.xingin.xhssharesdk.callback.XhsShareRegisterCallback;
@@ -32,10 +34,10 @@ public class XhsApiUnityBridge {
      * @param activity 主Activity
      * @param listener 初始化回调
      */
-    public static void registerApp(Activity activity, IRegisterListener listener){
+    public static void registerApp(Activity activity, IInitListener listener){
         XhsShareGlobalConfig config = new XhsShareGlobalConfig()
                 .setEnableLog(true);
-        XhsShareSdk.registerApp(activity, "**APPID**", config, new RegisterCallback(listener));
+        XhsShareSdk.registerApp(activity, "", config, new RegisterCallback(listener));
     }
 
     /**
@@ -113,13 +115,13 @@ public class XhsApiUnityBridge {
         /**
          * 注册App监听
          */
-        private final IRegisterListener listener;
+        private final IInitListener listener;
 
         /**
          * 实例化注册App回调
          * @param listener 回调内的Unity监听
          */
-        public RegisterCallback(IRegisterListener listener){
+        public RegisterCallback(IInitListener listener){
             this.listener = listener;
         }
 
@@ -170,7 +172,7 @@ public class XhsApiUnityBridge {
         @Override
         public void onSuccess(String sessionId) {
             Log.i(TAG, "ShareCallback.onSuccess: " + sessionId);
-            listener.onSuccess(sessionId);
+            listener.onSuccess();
         }
 
         /**
@@ -183,7 +185,7 @@ public class XhsApiUnityBridge {
         @Override
         public void onError(@NonNull String sessionId, int errCode, @NonNull String errMsg, @Nullable Throwable throwable) {
             Log.e(TAG, "ShareCallback.onError: ", throwable);
-            listener.onError(sessionId, errCode, errMsg);
+            listener.onError(errCode, errMsg);
         }
         
         /**
@@ -197,7 +199,7 @@ public class XhsApiUnityBridge {
         @Override
         public void onError2(@NonNull String sessionId, int errCode, int newErrCode, @NonNull String errMsg, @Nullable Throwable throwable) {
             Log.e(TAG, "ShareCallback.onError: ===", throwable);
-            listener.onError(sessionId, newErrCode, errMsg);
+            listener.onError(newErrCode, errMsg);
         }
     }
 }

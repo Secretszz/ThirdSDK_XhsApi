@@ -11,6 +11,7 @@
 #if UNITY_ANDROID
 namespace Bridge.XhsSDK
 {
+	using Common;
 	using UnityEngine;
 
 	/// <summary>
@@ -120,7 +121,7 @@ namespace Bridge.XhsSDK
 			/// <param name="sessionId">本次分享成功的对话id</param>
 			public void onSuccess(string sessionId)
 			{
-				listener?.OnSuccess(sessionId);
+				listener?.OnSuccess();
 			}
 
 			/// <summary>
@@ -131,7 +132,7 @@ namespace Bridge.XhsSDK
 			/// <param name="errorMessage">错误信息</param>
 			public void onError(string sessionId, int errorCode, string errorMessage)
 			{
-				listener?.OnError(sessionId, errorCode, errorMessage);
+				listener?.OnError(errorCode, errorMessage);
 			}
 		}
 	}

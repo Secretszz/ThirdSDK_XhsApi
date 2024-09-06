@@ -11,6 +11,7 @@
 #if UNITY_IOS
 namespace Bridge.XhsSDK
 {
+	using Common;
 	using Newtonsoft.Json;
 	using System.Runtime.InteropServices;
 	using AOT;
