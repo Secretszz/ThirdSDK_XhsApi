@@ -44,12 +44,12 @@ namespace Bridge.XhsSDK
 				rootDic.AddApplicationQueriesSchemes(items);
 
 				var array = rootDic.GetElementArray("CFBundleURLTypes");
-				array.AddCFBundleURLTypes("Editor", "xiaohongshu", new[] { $"xhs{instance.XhsAppId}" });
+				array.AddCFBundleURLTypes("Editor", "xiaohongshu", new[] { $"xhs{instance.XhsAppId_iOS}" });
 				plist.WriteToFile(plistPath);
 
 				var objectiveCFilePath = Path.Combine(pathToBuildProject, ApiPath);
 				StringBuilder objectiveCCode = new StringBuilder(File.ReadAllText(objectiveCFilePath));
-				objectiveCCode.Replace("**APPID**", instance.WxAppId);
+				objectiveCCode.Replace("**APPID**", instance.XhsAppId_iOS);
 				objectiveCCode.Replace("**UNILINK**", instance.UniversalLink);
 				// 将修改后的 Objective-C 代码写回文件中
 				File.WriteAllText(objectiveCFilePath, objectiveCCode.ToString());
