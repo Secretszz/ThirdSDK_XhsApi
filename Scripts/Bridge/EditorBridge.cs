@@ -11,6 +11,7 @@
 #if UNITY_EDITOR
 namespace Bridge.XhsSDK
 {
+	using Common;
 	using UnityEngine;
 
 	/// <summary>
@@ -25,13 +26,13 @@ namespace Bridge.XhsSDK
 
 		string IBridge.ShareImage(string title, string content, string[] imagePaths, IShareListener listener)
 		{
-			listener?.OnSuccess("");
+			listener?.OnSuccess();
 			return null;
 		}
 
 		string IBridge.ShareVideo(string title, string content, string videoPaths, string imagePath, IShareListener listener)
 		{
-			listener?.OnSuccess("");
+			listener?.OnSuccess();
 			return null;
 		}
 
@@ -39,13 +40,13 @@ namespace Bridge.XhsSDK
 
 		string IBridge.ShareImage(string title, string content, byte[] imageData, IShareListener listener)
 		{
-			listener?.OnSuccess("");
+			listener?.OnSuccess();
 			return null;
 		}
 
 		string IBridge.ShareVideo(string title, string content, string videoPaths, byte[] imageData, IShareListener listener)
 		{
-			listener?.OnSuccess("");
+			listener?.OnSuccess();
 			return null;
 		}
 
