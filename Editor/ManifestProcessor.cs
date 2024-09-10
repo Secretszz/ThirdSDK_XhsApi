@@ -33,7 +33,7 @@ namespace Bridge.XhsSDK
             // 将修改后的 Objective-C 代码写回文件中
             File.WriteAllText(objectiveCFilePath, objectiveCCode.ToString());
             
-            Common.ManifestProcessor.ReplaceBuildDefinedCache.Add("##XHS_DEPENDENCIES##", "implementation(name: 'xhssharesdk-1.1.6', ext:'aar')");
+            Common.ManifestProcessor.ReplaceBuildDefinedCache[Common.ManifestProcessor.XHS_DEPENDENCIES] = "implementation(name: 'xhssharesdk-1.1.6', ext:'aar')";
         }
         
         private static void CopyNativeCode(string projectPath)
