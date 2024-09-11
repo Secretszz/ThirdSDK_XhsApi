@@ -21,18 +21,16 @@ namespace Bridge.XhsSDK
 	{
 		private const string UnityPlayerClassName = "com.unity3d.player.UnityPlayer";
 		private const string ManagerClassName = "com.bridge.xhsapi.XhsApiUnityBridge";
-		private const string RegisterClassName = "com.bridge.xhsapi.IRegisterListener";
-		private const string ShareClassName = "com.bridge.xhsapi.IShareListener";
 
 		private static AndroidJavaClass bridge;
 		private static AndroidJavaObject currentActivity;
 
-		void IBridge.InitSDK(IInitListener listener)
+		void IBridge.InitSDK(IBridgeListener listener)
 		{
 			AndroidJavaClass unityPlayer = new AndroidJavaClass(UnityPlayerClassName);
 			currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
 			bridge = new AndroidJavaClass(ManagerClassName);
-			bridge.CallStatic("registerApp", currentActivity, new RegisterCallback(listener));
+			bridge.CallStatic("registerApp", currentActivity, new BridgeCallback(listener));
 		}
 
 		/// <summary>
@@ -43,9 +41,9 @@ namespace Bridge.XhsSDK
 		/// <param name="imagePaths">分享的图片列表</param>
 		/// <param name="listener">分享回调</param>
 		/// <returns>本次分享的唯一标识，每次分享都会改变</returns>
-		string IBridge.ShareImage(string title, string content, string[] imagePaths, IShareListener listener)
+		string IBridge.ShareImage(string title, string content, string[] imagePaths, IBridgeListener listener)
 		{
-			return bridge.CallStatic<string>("shareImage", currentActivity, title, content, imagePaths, new ShareCallback(listener));
+			return bridge.CallStatic<string>("shareImage", currentActivity, title, content, imagePaths, new BridgeCallback(listener));
 		}
 
 		/// <summary>
@@ -57,9 +55,9 @@ namespace Bridge.XhsSDK
 		/// <param name="imagePath">分享封面图片</param>
 		/// <param name="listener">分享回调</param>
 		/// <returns>本次分享的唯一标识，每次分享都会改变</returns>
-		string IBridge.ShareVideo(string title, string content, string videoPaths, string imagePath, IShareListener listener)
+		string IBridge.ShareVideo(string title, string content, string videoPaths, string imagePath, IBridgeListener listener)
 		{
-			return bridge.CallStatic<string>("shareVideo", currentActivity, title, content, videoPaths, imagePath, new ShareCallback(listener));
+			return bridge.CallStatic<string>("shareVideo", currentActivity, title, content, videoPaths, imagePath, new BridgeCallback(listener));
 		}
 
 		/// <summary>
@@ -78,62 +76,6 @@ namespace Bridge.XhsSDK
 		bool IBridge.IsInstalled()
 		{
 			return bridge.CallStatic<bool>("isXhsInstalled", currentActivity);
-		}
-
-		/// <summary>
-		/// 初始化回调
-		/// </summary>
-		private class RegisterCallback : AndroidJavaProxy
-		{
-			public RegisterCallback(IInitListener listener) : base(RegisterClassName)
-			{
-				this.listener = listener;
-			}
-
-			private IInitListener listener;
-
-			public void onSuccess()
-			{
-				listener?.OnSuccess();
-			}
-
-			public void onError(int errorCode, string errorMessage)
-			{
-				listener?.OnError(errorCode, errorMessage);
-			}
-		}
-
-		/// <summary>
-		/// 分享回调
-		/// </summary>
-		private class ShareCallback : AndroidJavaProxy
-		{
-			public ShareCallback(IShareListener listener) : base(ShareClassName)
-			{
-				this.listener = listener;
-			}
-
-			private IShareListener listener;
-
-			/// <summary>
-			/// 分享成功回调
-			/// </summary>
-			/// <param name="sessionId">本次分享成功的对话id</param>
-			public void onSuccess(string sessionId)
-			{
-				listener?.OnSuccess();
-			}
-
-			/// <summary>
-			/// 分享失败回调
-			/// </summary>
-			/// <param name="sessionId">本次分享成功的对话id</param>
-			/// <param name="errorCode">错误码</param>
-			/// <param name="errorMessage">错误信息</param>
-			public void onError(string sessionId, int errorCode, string errorMessage)
-			{
-				listener?.OnError(errorCode, errorMessage);
-			}
 		}
 	}
 }

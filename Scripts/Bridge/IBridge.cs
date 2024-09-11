@@ -18,7 +18,7 @@ namespace Bridge.XhsSDK
 		/// 初始化
 		/// </summary>
 		/// <param name="listener"></param>
-		void InitSDK(IInitListener listener);
+		void InitSDK(IBridgeListener listener);
 
 		/// <summary>
 		/// 发起图文分享
@@ -28,7 +28,7 @@ namespace Bridge.XhsSDK
 		/// <param name="imagePaths">分享的图片列表</param>
 		/// <param name="listener">分享回调</param>
 		/// <returns>本次分享的唯一标识，每次分享都会改变</returns>
-		string ShareImage(string title, string content, string[] imagePaths, IShareListener listener);
+		string ShareImage(string title, string content, string[] imagePaths, IBridgeListener listener);
 
 		/// <summary>
 		/// 发起视频分享
@@ -39,7 +39,7 @@ namespace Bridge.XhsSDK
 		/// <param name="imagePath">分享封面图片</param>
 		/// <param name="listener">分享回调</param>
 		/// <returns>本次分享的唯一标识，每次分享都会改变</returns>
-		string ShareVideo(string title, string content, string videoPaths, string imagePath, IShareListener listener);
+		string ShareVideo(string title, string content, string videoPaths, string imagePath, IBridgeListener listener);
 
 #if UNITY_IOS
 
@@ -51,7 +51,7 @@ namespace Bridge.XhsSDK
 		/// <param name="imageData">图片数据</param>
 		/// <param name="listener">分享回调</param>
 		/// <returns>本次分享的唯一标识，每次分享都会改变</returns>
-		string ShareImage(string title, string content, byte[] imageData, IShareListener listener);
+		string ShareImage(string title, string content, byte[] imageData, IBridgeListener listener);
 
 		/// <summary>
 		/// 发起视频分享
@@ -62,7 +62,7 @@ namespace Bridge.XhsSDK
 		/// <param name="imageData">图片数据</param>
 		/// <param name="listener">分享回调</param>
 		/// <returns>本次分享的唯一标识，每次分享都会改变</returns>
-		string ShareVideo(string title, string content, string videoPaths, byte[] imageData, IShareListener listener);
+		string ShareVideo(string title, string content, string videoPaths, byte[] imageData, IBridgeListener listener);
 
 #endif
 

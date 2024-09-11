@@ -45,7 +45,7 @@ namespace Bridge.XhsSDK
 		/// 初始化
 		/// </summary>
 		/// <param name="listener"></param>
-		public static void InitSDK(IInitListener listener)
+		public static void InitSDK(IBridgeListener listener)
 		{
 			bridgeImpl.InitSDK(listener);
 		}
@@ -58,7 +58,7 @@ namespace Bridge.XhsSDK
 		/// <param name="imagePaths">分享的图片列表</param>
 		/// <param name="listener">分享回调</param>
 		/// <returns>本次分享的唯一标识，每次分享都会改变</returns>
-		public static string ShareImage(string title, string content, string[] imagePaths, IShareListener listener)
+		public static string ShareImage(string title, string content, string[] imagePaths, IBridgeListener listener)
 		{
 			return bridgeImpl.ShareImage(title, content, imagePaths, listener);
 		}
@@ -72,7 +72,7 @@ namespace Bridge.XhsSDK
 		/// <param name="imagePath">分享封面图片</param>
 		/// <param name="listener">分享回调</param>
 		/// <returns>本次分享的唯一标识，每次分享都会改变</returns>
-		public static string ShareVideo(string title, string content, string videoPaths, string imagePath, IShareListener listener)
+		public static string ShareVideo(string title, string content, string videoPaths, string imagePath, IBridgeListener listener)
 		{
 			return bridgeImpl.ShareVideo(title, content, videoPaths, imagePath, listener);
 		}
