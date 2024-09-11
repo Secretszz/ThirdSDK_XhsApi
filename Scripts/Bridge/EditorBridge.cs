@@ -19,34 +19,34 @@ namespace Bridge.XhsSDK
 	/// </summary>
 	internal class EditorBridge : IBridge
 	{
-		void IBridge.InitSDK(IInitListener listener)
+		void IBridge.InitSDK(IBridgeListener listener)
 		{
-			listener?.OnSuccess();
+			listener?.OnSuccess("");
 		}
 
-		string IBridge.ShareImage(string title, string content, string[] imagePaths, IShareListener listener)
+		string IBridge.ShareImage(string title, string content, string[] imagePaths, IBridgeListener listener)
 		{
-			listener?.OnSuccess();
+			listener?.OnSuccess("");
 			return null;
 		}
 
-		string IBridge.ShareVideo(string title, string content, string videoPaths, string imagePath, IShareListener listener)
+		string IBridge.ShareVideo(string title, string content, string videoPaths, string imagePath, IBridgeListener listener)
 		{
-			listener?.OnSuccess();
+			listener?.OnSuccess("");
 			return null;
 		}
 
 #if UNITY_IOS
 
-		string IBridge.ShareImage(string title, string content, byte[] imageData, IShareListener listener)
+		string IBridge.ShareImage(string title, string content, byte[] imageData, IBridgeListener listener)
 		{
-			listener?.OnSuccess();
+			listener?.OnSuccess("");
 			return null;
 		}
 
-		string IBridge.ShareVideo(string title, string content, string videoPaths, byte[] imageData, IShareListener listener)
+		string IBridge.ShareVideo(string title, string content, string videoPaths, byte[] imageData, IBridgeListener listener)
 		{
-			listener?.OnSuccess();
+			listener?.OnSuccess("");
 			return null;
 		}
 

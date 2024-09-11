@@ -6,8 +6,7 @@ import android.util.Log;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
-import com.bridge.common.listener.IInitListener;
-import com.bridge.common.listener.IShareListener;
+import com.bridge.common.listener.IBridgeListener;
 import com.xingin.xhssharesdk.XhsShareSdkTools;
 import com.xingin.xhssharesdk.callback.XhsShareCallback;
 import com.xingin.xhssharesdk.callback.XhsShareRegisterCallback;
@@ -34,7 +33,7 @@ public class XhsApiUnityBridge {
      * @param activity 主Activity
      * @param listener 初始化回调
      */
-    public static void registerApp(Activity activity, IInitListener listener){
+    public static void registerApp(Activity activity, IBridgeListener listener){
         XhsShareGlobalConfig config = new XhsShareGlobalConfig()
                 .setEnableLog(true);
         XhsShareSdk.registerApp(activity, "", config, new RegisterCallback(listener));
@@ -50,7 +49,7 @@ public class XhsApiUnityBridge {
      * @return 本次分享的唯一标识，每次分享都会改变
      */
     @NonNull
-    public static String shareImage(Activity activity, String title, String content, @NonNull String[] imagePaths, IShareListener listener){
+    public static String shareImage(Activity activity, String title, String content, @NonNull String[] imagePaths, IBridgeListener listener){
         List<XhsImageResourceBean> list = new ArrayList<>();
         for (String path : imagePaths){
             list.add(new XhsImageResourceBean(new File(path)));
@@ -75,7 +74,7 @@ public class XhsApiUnityBridge {
      * @return 本次分享的唯一标识，每次分享都会改变
      */
     @NonNull
-    public static String shareVideo(Activity activity, String title, String content, @NonNull String videoPath, @NonNull String imagePath, IShareListener listener){
+    public static String shareVideo(Activity activity, String title, String content, @NonNull String videoPath, @NonNull String imagePath, IBridgeListener listener){
         XhsNote note = new XhsNote()
                 .setTitle(title)
                 .setContent(content)
@@ -115,13 +114,13 @@ public class XhsApiUnityBridge {
         /**
          * 注册App监听
          */
-        private final IInitListener listener;
+        private final IBridgeListener listener;
 
         /**
          * 实例化注册App回调
          * @param listener 回调内的Unity监听
          */
-        public RegisterCallback(IInitListener listener){
+        public RegisterCallback(IBridgeListener listener){
             this.listener = listener;
         }
 
@@ -131,7 +130,7 @@ public class XhsApiUnityBridge {
         @Override
         public void onSuccess() {
             Log.i(TAG, "RegisterCallback.onSuccess: register success");
-            listener.onSuccess();
+            listener.onSuccess("success");
         }
 
         /**
@@ -155,13 +154,13 @@ public class XhsApiUnityBridge {
         /**
          * 分享监听
          */
-        private final IShareListener listener;
+        private final IBridgeListener listener;
 
         /**
          * 实例化分享回调
          * @param listener 回调内的Unity监听
          */
-        private ShareCallback(IShareListener listener) {
+        private ShareCallback(IBridgeListener listener) {
             this.listener = listener;
         }
 
@@ -172,7 +171,7 @@ public class XhsApiUnityBridge {
         @Override
         public void onSuccess(String sessionId) {
             Log.i(TAG, "ShareCallback.onSuccess: " + sessionId);
-            listener.onSuccess();
+            listener.onSuccess(sessionId);
         }
 
         /**
