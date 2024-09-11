@@ -87,7 +87,7 @@ namespace Bridge.XhsSDK
 		/// <param name="imageData">图片数据</param>
 		/// <param name="listener">分享回调</param>
 		/// <returns>本次分享的唯一标识，每次分享都会改变</returns>
-		public static string ShareImage(string title, string content, byte[] imageData, IShareListener listener)
+		public static string ShareImage(string title, string content, byte[] imageData, IBridgeListener listener)
 		{
 			return bridgeImpl.ShareImage(title, content, imageData, listener);
 		}
@@ -101,7 +101,7 @@ namespace Bridge.XhsSDK
 		/// <param name="imageData">图片数据</param>
 		/// <param name="listener">分享回调</param>
 		/// <returns>本次分享的唯一标识，每次分享都会改变</returns>
-		public static string ShareVideo(string title, string content, string videoPaths, byte[] imageData, IShareListener listener)
+		public static string ShareVideo(string title, string content, string videoPaths, byte[] imageData, IBridgeListener listener)
 		{
 			return bridgeImpl.ShareVideo(title, content, videoPaths, imageData, listener);
 		}

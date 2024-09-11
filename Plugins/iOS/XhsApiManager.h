@@ -6,17 +6,13 @@
 //
 
 #import <XiaoHongShuOpenSDK/XHSApi.h>
-
-/**
- 绑定第三方账号成功事件
- */
-typedef void(* U3DBridgeCallback_Share)(int, const char *);
-typedef void(* U3DBridgeCallback_OpenUrl)(bool, const char *);
+#import "CommonApi.h"
 
 @interface XhsApiManager : NSObject<XHSApiDelegate>
 
-@property (nonatomic, assign) U3DBridgeCallback_Share shareCallback;
-@property (nonatomic, assign) U3DBridgeCallback_OpenUrl openUrlCallback;
+@property (nonatomic, assign) U3DBridgeCallback_Success onSuccess;
+@property (nonatomic, assign) U3DBridgeCallback_Cancel onCancel;
+@property (nonatomic, assign) U3DBridgeCallback_Error onError;
 
 + (XhsApiManager *) instance;
 
