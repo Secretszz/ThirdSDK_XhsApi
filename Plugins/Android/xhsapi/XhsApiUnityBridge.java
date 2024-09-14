@@ -36,7 +36,7 @@ public class XhsApiUnityBridge {
     public static void registerApp(Activity activity, IBridgeListener listener){
         XhsShareGlobalConfig config = new XhsShareGlobalConfig()
                 .setEnableLog(true);
-        XhsShareSdk.registerApp(activity, "", config, new RegisterCallback(listener));
+        XhsShareSdk.registerApp(activity, "**APPID**", config, new RegisterCallback(listener));
     }
 
     /**
