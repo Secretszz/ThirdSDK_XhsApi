@@ -28,15 +28,19 @@ import java.util.List;
 public class XhsApiUnityBridge {
     private static final String TAG = XhsApiUnityBridge.class.getName();
 
+    public static XhsApiUnityBridge getInstance(){
+        return Holder.INSTANCE;
+    }
+
     /**
      * 注册 app （即初始化）
      * @param activity 主Activity
      * @param listener 初始化回调
      */
-    public static void registerApp(Activity activity, IBridgeListener listener){
+    public void registerApp(Activity activity, IBridgeListener listener){
         XhsShareGlobalConfig config = new XhsShareGlobalConfig()
                 .setEnableLog(true);
-        XhsShareSdk.registerApp(activity, "**APPID**", config, new RegisterCallback(listener));
+        XhsShareSdk.registerApp(activity, "22b773b290903791777f3b42a0cfbf5a", config, new RegisterCallback(listener));
     }
 
     /**
@@ -49,7 +53,7 @@ public class XhsApiUnityBridge {
      * @return 本次分享的唯一标识，每次分享都会改变
      */
     @NonNull
-    public static String shareImage(Activity activity, String title, String content, @NonNull String[] imagePaths, IBridgeListener listener){
+    public String shareImage(Activity activity, String title, String content, @NonNull String[] imagePaths, IBridgeListener listener){
         List<XhsImageResourceBean> list = new ArrayList<>();
         for (String path : imagePaths){
             list.add(new XhsImageResourceBean(new File(path)));
@@ -74,7 +78,7 @@ public class XhsApiUnityBridge {
      * @return 本次分享的唯一标识，每次分享都会改变
      */
     @NonNull
-    public static String shareVideo(Activity activity, String title, String content, @NonNull String videoPath, @NonNull String imagePath, IBridgeListener listener){
+    public String shareVideo(Activity activity, String title, String content, @NonNull String videoPath, @NonNull String imagePath, IBridgeListener listener){
         XhsNote note = new XhsNote()
                 .setTitle(title)
                 .setContent(content)
@@ -89,7 +93,7 @@ public class XhsApiUnityBridge {
      * @param activity - Activity
      * @param url - 网页链接，仅支持 http 和 https 链接
      */
-    public static void openUrlInXhs(Activity activity, String url){
+    public void openUrlInXhs(Activity activity, String url){
         XhsShareSdk.openUrlInXhs(activity, url);
     }
 
@@ -97,7 +101,7 @@ public class XhsApiUnityBridge {
      * 小红书是否已经安装
      * @return 是否已经安装
      */
-    public static boolean isXhsInstalled(Activity activity){
+    public boolean isXhsInstalled(Activity activity){
         return XhsShareSdkTools.isXhsInstalled(activity);
     }
 
@@ -200,5 +204,9 @@ public class XhsApiUnityBridge {
             Log.e(TAG, "ShareCallback.onError: ===", throwable);
             listener.onError(newErrCode, errMsg);
         }
+    }
+
+    private static class Holder{
+        public final static XhsApiUnityBridge INSTANCE = new XhsApiUnityBridge();
     }
 }
