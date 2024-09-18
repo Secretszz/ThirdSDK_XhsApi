@@ -22,15 +22,16 @@ namespace Bridge.XhsSDK
 		private const string UnityPlayerClassName = "com.unity3d.player.UnityPlayer";
 		private const string ManagerClassName = "com.bridge.xhsapi.XhsApiUnityBridge";
 
-		private static AndroidJavaClass bridge;
+		private static AndroidJavaObject api;
 		private static AndroidJavaObject currentActivity;
 
 		void IBridge.InitSDK(IBridgeListener listener)
 		{
 			AndroidJavaClass unityPlayer = new AndroidJavaClass(UnityPlayerClassName);
 			currentActivity = unityPlayer.GetStatic<AndroidJavaObject>("currentActivity");
-			bridge = new AndroidJavaClass(ManagerClassName);
-			bridge.CallStatic("registerApp", currentActivity, new BridgeCallback(listener));
+			AndroidJavaClass jc = new AndroidJavaClass(ManagerClassName);
+			api = jc.CallStatic<AndroidJavaObject>("getInstance");
+			api.Call("registerApp", currentActivity, new BridgeCallback(listener));
 		}
 
 		/// <summary>
@@ -43,7 +44,7 @@ namespace Bridge.XhsSDK
 		/// <returns>本次分享的唯一标识，每次分享都会改变</returns>
 		string IBridge.ShareImage(string title, string content, string[] imagePaths, IBridgeListener listener)
 		{
-			return bridge.CallStatic<string>("shareImage", currentActivity, title, content, imagePaths, new BridgeCallback(listener));
+			return api.Call<string>("shareImage", currentActivity, title, content, imagePaths, new BridgeCallback(listener));
 		}
 
 		/// <summary>
@@ -57,7 +58,7 @@ namespace Bridge.XhsSDK
 		/// <returns>本次分享的唯一标识，每次分享都会改变</returns>
 		string IBridge.ShareVideo(string title, string content, string videoPaths, string imagePath, IBridgeListener listener)
 		{
-			return bridge.CallStatic<string>("shareVideo", currentActivity, title, content, videoPaths, imagePath, new BridgeCallback(listener));
+			return api.Call<string>("shareVideo", currentActivity, title, content, videoPaths, imagePath, new BridgeCallback(listener));
 		}
 
 		/// <summary>
@@ -66,7 +67,7 @@ namespace Bridge.XhsSDK
 		/// <param name="url">网页链接，仅支持 http 和 https 链接</param>
 		void IBridge.OpenUrlInXhs(string url)
 		{
-			bridge.CallStatic("openUrlInXhs", currentActivity, url);
+			api.Call("openUrlInXhs", currentActivity, url);
 		}
 
 		/// <summary>
@@ -75,7 +76,7 @@ namespace Bridge.XhsSDK
 		/// <returns>是否已经安装</returns>
 		bool IBridge.IsInstalled()
 		{
-			return bridge.CallStatic<bool>("isXhsInstalled", currentActivity);
+			return api.Call<bool>("isXhsInstalled", currentActivity);
 		}
 	}
 }
