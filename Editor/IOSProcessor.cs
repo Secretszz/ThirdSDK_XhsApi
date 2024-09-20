@@ -23,8 +23,6 @@ namespace Bridge.XhsSDK
 	/// </summary>
 	internal static class IOSProcessor
 	{
-		private const string ApiPath = "Libraries/ThirdSDK/XhsApi/Plugins/iOS/XhsApiManager.mm";
-
 		[PostProcessBuild(10002)]
 		public static void OnPostProcessBuild(BuildTarget target, string pathToBuildProject)
 		{
@@ -47,6 +45,16 @@ namespace Bridge.XhsSDK
 				array.AddCFBundleURLTypes("Editor", "xiaohongshu", new[] { $"xhs{instance.XhsAppId_iOS}" });
 				plist.WriteToFile(plistPath);
 
+				var sourcePath = ThirdSDKPackageManager.GetUnityPackagePath(ThirdSDKPackageManager.WxApiPackageName);
+				string ApiPath;
+				if (string.IsNullOrEmpty(sourcePath))
+				{
+					ApiPath = "Libraries/ThirdSDK/XhsApi/Plugins/iOS/XhsApiManager.mm";
+				}
+				else
+				{
+					ApiPath = "Libraries/XhsApi/Plugins/iOS/XhsApiManager.mm";
+				}
 				var objectiveCFilePath = Path.Combine(pathToBuildProject, ApiPath);
 				StringBuilder objectiveCCode = new StringBuilder(File.ReadAllText(objectiveCFilePath));
 				objectiveCCode.Replace("**APPID**", instance.XhsAppId_iOS);
