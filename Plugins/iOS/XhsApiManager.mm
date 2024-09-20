@@ -25,8 +25,8 @@ static XhsApiManager* _instance;
 }
 
 - (void)registerApp{
-    NSString * appKey = @"";
-    NSString * universalLink = @"https://sunnygame666.com/slashandgirl/";
+    NSString * appKey = @"**APPID**";
+    NSString * universalLink = @"**UNILINK**";
     [XHSApi registerApp:appKey universalLink:universalLink delegate:self];
 }
 

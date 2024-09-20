@@ -53,7 +53,7 @@ namespace Bridge.XhsSDK
 				}
 				else
 				{
-					ApiPath = "Libraries/XhsApi/Plugins/iOS/XhsApiManager.mm";
+					ApiPath = "Libraries/com.bridge.xhsapi/Plugins/iOS/XhsApiManager.mm";
 				}
 				var objectiveCFilePath = Path.Combine(pathToBuildProject, ApiPath);
 				StringBuilder objectiveCCode = new StringBuilder(File.ReadAllText(objectiveCFilePath));
