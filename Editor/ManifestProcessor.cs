@@ -15,7 +15,7 @@ namespace Bridge.XhsSDK
     using UnityEngine;
     using System.Text;
     using System.IO;
-    using Editor;
+    using Common;
     using UnityEditor;
     using UnityEditor.Callbacks;
 
