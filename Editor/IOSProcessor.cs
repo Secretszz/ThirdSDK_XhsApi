@@ -45,7 +45,7 @@ namespace Bridge.XhsSDK
 				array.AddCFBundleURLTypes("Editor", "xiaohongshu", new[] { $"xhs{instance.XhsAppId_iOS}" });
 				plist.WriteToFile(plistPath);
 
-				var sourcePath = ThirdSDKPackageManager.GetUnityPackagePath(ThirdSDKPackageManager.WxApiPackageName);
+				var sourcePath = ThirdSDKPackageManager.GetUnityPackagePath(PackageType.XiaoHongShu);
 				string ApiPath;
 				if (string.IsNullOrEmpty(sourcePath))
 				{
