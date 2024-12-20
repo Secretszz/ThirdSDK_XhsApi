@@ -8,7 +8,6 @@
 // Create Time:		2024/02/03 19:26:41
 // *******************************************
 
-#if UNITY_EDITOR
 namespace Bridge.XhsSDK
 {
 	using Common;
@@ -63,4 +62,3 @@ namespace Bridge.XhsSDK
 		}
 	}
 }
-#endif
